@@ -7,6 +7,7 @@ services:
     ports:
       - "9444:9444"
       - "9765:9764"
+      - "8082:8082"
     environment:
       - TZ=UTC
     networks:

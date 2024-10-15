@@ -4,7 +4,9 @@ node_ip = "127.0.0.1"
 #base_path = "https://$ref{server.hostname}:${carbon.management.port}"
 base_path="https://sso.cityfinance.az"
 offset=1
-#test
+
+[transport.https.properties]
+proxyPort = 443
 
 [super_admin]
 username = "admin"
