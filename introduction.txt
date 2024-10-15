@@ -1,0 +1,37 @@
+
+Steps to run services
+1. docker build -t custom-wso2am:latest ./wso2am
+2. docker build -t custom-wso2is:latest ./wso2is
+3. docker build -t custom-wso2mi:latest ./wso2mi
+docker-compose build ** use for build all images
+4. docker-compose up -d
+
+docker-compose build && docker-compose up -d
+
+
+docker run -it -p 9444:9444 --name is custom-wso2is:latest
+
+curl -u admin:admin https://localhost:8253/management/health
+
+
+------
+Run only am
+
+For ex: 9445 port
+--
+docker build -t custom-am:latest . 
+docker run -it -p 9445:9445 --name wso2_apim custom-am:latest
+--
+docker build -t custom-wso-is:latest .
+docker run -it -p 9445:9445 --name wso2_is custom-wso-is:latest
+--
+docker build -t custom-wso-mi:latest .
+docker run -it -p 8290:8290 -p 8253:8253 -p 9201:9201 -p 9164:9164 --name wso_mi custom-wso-mi:latest
+--
+docker build -t custom-wso-mi-dashboard:latest .
+docker run -it -p 9445:9445 --name wso_mi_dashboard custom-wso-mi-dashboard:latest
+--
+
+curl -X GET "https://localhost:9164/management/login" -H "accept: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -k -i
+
+curl -X GET "https://localhost:9164/management/users?pattern=*us*&role=role" -H "accept: application/json" -H "Authorization: Bearer eyJraWQiOiI2MzFkNzFiYy04YmQ0LTRiNmItYTFiMC1iZmJjYTZiYjIzNDYiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMTcyLjE3LjAuMjo5MTY0XC8iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTcyODg5MjkzMiwic2NvcGUiOiJhZG1pbiJ9.B1yqruUe0wV58da5qCUB8dP3mGoMiXIpQJIKptza9H7SYdG3pNjyOUKvHuFPdBlWWTsQMdp1lCpzWSYAfdy3x9HfaLgKPIiqkkDBuWqOZZLGQ6L-UyYu5OoTAjdaRkiYgy2p3IB1jJf54r_ATiwrHHLNzjXPhHsdgNTE8QyAmoMrWe9FCgqEVa7QaeQfjEuVcUOlxd1drm62CyXYzWVCku53-ODFKOQShcC4hRGQV1fA3ssbBfZ6FllizII-6aOTVArp85Z9ZrZhiuB-0QYkoWUTbjmjnxAIUiDGqqBBSqhups3Lbcok9tMljaDFn2aXdkxJoAUu-87POMnR5VH-IQ" -k -i

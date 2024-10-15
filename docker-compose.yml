@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  wso2is:
+    build: ./wso2is
+    container_name: wso2is
+    ports:
+      - "9444:9444"
+      - "9765:9764"
+    environment:
+      - TZ=UTC
+    networks:
+      - wso2net
+
+networks:
+  wso2net:
+    driver: bridge

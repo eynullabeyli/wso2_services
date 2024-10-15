@@ -1,0 +1,27 @@
+[dashboard_config]
+dashboard_url = "https://localhost:9445/dashboard/api/"
+heartbeat_interval = 5
+group_id = "mi_dev"
+node_id = "dev_node_2"
+
+[server]
+hostname = "localhost"
+
+[user_store]
+type = "read_only_ldap"
+
+[keystore.primary]
+file_name = "repository/resources/security/wso2carbon.jks"
+password = "wso2carbon"
+alias = "wso2carbon"
+key_password = "wso2carbon"
+
+[truststore]
+file_name = "repository/resources/security/client-truststore.jks"
+password = "wso2carbon"
+alias = "symmetric.key.value"
+algorithm = "AES"
+
+[management_api]
+enable = true
+protocols = "http"

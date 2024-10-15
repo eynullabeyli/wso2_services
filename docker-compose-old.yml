@@ -1,0 +1,52 @@
+version: '3.7'
+
+services:
+  wso2is:
+    build: ./wso2is
+    container_name: wso2is
+    ports:
+      - "9444:9444"
+      - "9765:9764"
+    environment:
+      - TZ=UTC
+    networks:
+      - wso2net
+
+  wso2am:
+    build: ./wso2am
+    container_name: wso2am
+    ports:
+      - "9443:9443"
+      - "8281:8280"
+      - "9766:9766"
+    environment:
+      - TZ=UTC
+    networks:
+      - wso2net
+
+  wso2mi:
+    build: ./wso2mi
+    container_name: wso2mi
+    ports:
+      - "8290:8290"
+      - "8253:8253"
+      - "9201:9201"
+      - "9164:9164"
+    environment:
+      - TZ=UTC
+    networks:
+      - wso2net
+
+  wso2mi-dashboard:
+    build: ./wso2mi-dashboard  
+    container_name: wso2mi_dashboard
+    ports:
+      - "9445:9445"
+    environment:
+      - TZ=UTC
+    networks:
+      - wso2net
+
+networks:
+  wso2net:
+    driver: bridge
